@@ -29,7 +29,16 @@ public class TodoController {
         return ResponseEntity.ok(todoService.getTodoById(id));
     }
 
+    @PostMapping
+    public ResponseEntity<TodoDto> createTodo(@RequestBody CreateTodoRequest createTodoRequest){
+        return ResponseEntity.ok(todoService.createTodo(createTodoRequest));
+    }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<TodoDto> updateTodo(@PathVariable("id") Long id,
+                                              @RequestBody UpdateTodoRequest updateTodoRequest){
+        return ResponseEntity.ok(todoService.updateTodo(id, updateTodoRequest));
+    }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteTodo(@PathVariable("id") Long id){
